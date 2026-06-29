@@ -75,10 +75,7 @@ export function OperationalMap() {
         setLatestOverlay(overlayPayload.overlay || null);
         setFloodFrames(framePayload.frames || []);
         setFrameIndex(0);
-        const frameMessage =
-          framePayload.status === "ready"
-            ? `Flood animation loaded: ${framePayload.frame_count} frame${framePayload.frame_count === 1 ? "" : "s"}.`
-            : framePayload.message;
+        const frameMessage = floodFrameMessage(framePayload.status, framePayload.frame_count, framePayload.message);
         setMessage(overlayPayload.status === "ready" ? `GIS catalog loaded. ${frameMessage}` : overlayPayload.message);
       })
       .catch((error: Error) => setMessage(error.message || "Unable to load map resources."));
@@ -634,7 +631,20 @@ function layerDetail(layer: GisLayer) {
   if (count === null || count === undefined) {
     return layer.geometry_type || "--";
   }
+  if (count === 0) {
+    return `${layer.geometry_type || layer.source_format || "layer"} · empty`;
+  }
   return `${count.toLocaleString()} features`;
+}
+
+function floodFrameMessage(status: string, frameCount: number, message: string) {
+  if (status !== "ready") {
+    return message;
+  }
+  if (frameCount <= 0) {
+    return "Flood map is ready but no frame artifacts are available.";
+  }
+  return `Flood animation loaded: ${frameCount} frame${frameCount === 1 ? "" : "s"}.`;
 }
 
 function formatValue(value: unknown) {

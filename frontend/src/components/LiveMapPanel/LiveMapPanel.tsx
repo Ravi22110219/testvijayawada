@@ -177,7 +177,7 @@ export const LiveMapPanel = React.forwardRef<LiveMapPanelHandle, {
       .then((payload) => {
         setFrames(payload.frames || []);
         setFrameIndex(0);
-        setMessage(payload.status === "ready" ? `Flood frames loaded: ${payload.frame_count}` : payload.message);
+        setMessage(floodFrameMessage(payload.status, payload.frame_count, payload.message));
       })
       .catch((error: Error) => setMessage(error.message || "Flood frames unavailable."));
     if (props.showAws ?? props.variant !== "landing") {
@@ -1089,8 +1089,22 @@ function groupLayers(layers: GisLayer[]) {
 }
 
 function layerDetail(layer: GisLayer) {
-  const count = layer.feature_count ? `${layer.feature_count.toLocaleString()} features` : layer.kind;
+  const count = layer.feature_count === 0
+    ? "empty"
+    : layer.feature_count
+      ? `${layer.feature_count.toLocaleString()} features`
+      : layer.kind;
   return `${layer.geometry_type || layer.source_format} · ${count}`;
+}
+
+function floodFrameMessage(status: string, frameCount: number, message: string) {
+  if (status !== "ready") {
+    return message;
+  }
+  if (frameCount <= 0) {
+    return "Flood map is ready but no frame artifacts are available.";
+  }
+  return `Flood frames loaded: ${frameCount}`;
 }
 
 function isImageOverlayLayer(layer: GisLayer) {
