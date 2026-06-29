@@ -229,7 +229,7 @@ export function OperationalMap() {
               return;
             }
             const prepared = tagGeoJson(geojson, layer);
-            const added = map.data.addGeoJson(prepared);
+            const added = isEmptyFeatureCollection(prepared) ? [] : map.data.addGeoJson(prepared);
             featureMap.set(layer.layer_id, added);
             setLoadedLayers((current) => Array.from(new Set([...current, layer.layer_id])));
           })
@@ -488,6 +488,10 @@ function tagGeoJson(geojson: Record<string, unknown>, layer: GisLayer) {
       }
     }))
   };
+}
+
+function isEmptyFeatureCollection(geojson: Record<string, unknown>) {
+  return geojson.type === "FeatureCollection" && Array.isArray(geojson.features) && geojson.features.length === 0;
 }
 
 function styleFeature(feature: any, google: any) {

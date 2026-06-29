@@ -49,12 +49,15 @@ import type {
   GenerateWardPdfResponse
 } from "../types/api";
 
-export const apiBase = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const defaultApiBase = "https://testvapi.floodresq.com";
+
+export const apiBase = (import.meta.env.VITE_API_BASE_URL || defaultApiBase).replace(/\/$/, "");
 export const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 export const googleMapsConfigured = Boolean(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
 export const terminalStatuses = new Set(["completed", "completed_with_warnings", "failed", "cancelled"]);
 export const activeStatuses = new Set(["queued", "running", "paused", "cancel_requested"]);
 const authTokenStorageKey = "floodastra.phase6.authToken";
+const localApiHosts = new Set(["localhost", "127.0.0.1"]);
 
 type HealthResponse = {
   status?: string;
@@ -62,7 +65,7 @@ type HealthResponse = {
 };
 
 async function requestJson<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${apiBase}${path}`, init);
+  const response = await fetch(toApiUrl(path), init);
   if (!response.ok) {
     throw new Error(`${path} returned ${response.status}`);
   }
@@ -228,7 +231,7 @@ export function fetchAwareLatest() {
 }
 
 export function awareForecastCsvUrl(hours = 12) {
-  return `${apiBase}/api/aware/forecast/${hours}h.csv`;
+  return toApiUrl(`/api/aware/forecast/${hours}h.csv`);
 }
 
 export function fetchAwareOfficialStatus() {
@@ -379,8 +382,15 @@ export function fetchParitySystemStatus() {
 }
 
 export function toApiUrl(path: string) {
+  if (!path) {
+    return apiBase;
+  }
   if (path.startsWith("http")) {
+    const url = new URL(path);
+    if (localApiHosts.has(url.hostname) || url.port === "6010") {
+      return `${apiBase}${url.pathname}${url.search}${url.hash}`;
+    }
     return path;
   }
-  return `${apiBase}${path}`;
+  return `${apiBase}${path.startsWith("/") ? path : `/${path}`}`;
 }

@@ -356,7 +356,8 @@ export const LiveMapPanel = React.forwardRef<LiveMapPanelHandle, {
         if (!mapRef.current || featuresByLayerRef.current.has(WARD_MARKER_SOURCE_LAYER_ID)) {
           return;
         }
-        const added = mapRef.current.data.addGeoJson(tagInternalWardGeoJson(geojson));
+        const prepared = tagInternalWardGeoJson(geojson);
+        const added = isEmptyFeatureCollection(prepared) ? [] : mapRef.current.data.addGeoJson(prepared);
         featuresByLayerRef.current.set(WARD_MARKER_SOURCE_LAYER_ID, added);
         setVectorLayerVersion((value) => value + 1);
       })
@@ -604,7 +605,8 @@ export const LiveMapPanel = React.forwardRef<LiveMapPanelHandle, {
         if (!mapRef.current || !optionalLayers[layerId]) {
           return;
         }
-        const added = mapRef.current.data.addGeoJson(tagLayer(geojson, layer));
+        const prepared = tagLayer(geojson, layer);
+        const added = isEmptyFeatureCollection(prepared) ? [] : mapRef.current.data.addGeoJson(prepared);
         featureMap.set(layerId, added);
         setVectorLayerVersion((value) => value + 1);
       })
@@ -977,6 +979,10 @@ function tagInternalWardGeoJson(geojson: Record<string, unknown>) {
       }
     }))
   };
+}
+
+function isEmptyFeatureCollection(geojson: Record<string, unknown>) {
+  return geojson.type === "FeatureCollection" && Array.isArray(geojson.features) && geojson.features.length === 0;
 }
 
 function previewFeatureStyle(feature: any, google: any) {

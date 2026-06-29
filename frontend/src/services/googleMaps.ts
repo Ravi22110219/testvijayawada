@@ -36,7 +36,7 @@ export function loadGoogleMaps(apiKey: string) {
   googleMapsPromise = new Promise((resolve, reject) => {
     window.__floodAstraGoogleMapsReady = () => resolve(window.google);
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&callback=__floodAstraGoogleMapsReady`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&callback=__floodAstraGoogleMapsReady&loading=async`;
     script.async = true;
     script.defer = true;
     script.onerror = () => reject(new Error("Unable to load Google Maps JavaScript."));
