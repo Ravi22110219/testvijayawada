@@ -1,0 +1,26 @@
+.healthPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: var(--color-panel);
+  color: var(--color-muted);
+  text-transform: capitalize;
+}
+
+.online {
+  border-color: color-mix(in srgb, var(--color-success) 34%, transparent);
+  color: var(--color-success);
+}
+
+.offline {
+  border-color: color-mix(in srgb, var(--color-danger) 34%, transparent);
+  color: var(--color-danger);
+}
+
+.checking {
+  border-color: color-mix(in srgb, var(--color-accent) 34%, transparent);
+  color: var(--color-accent-strong);
+}

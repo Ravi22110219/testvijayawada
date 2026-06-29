@@ -1,0 +1,559 @@
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.toolbar div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.toolbar strong,
+.toolbar span,
+.latestJob strong,
+.latestJob span,
+.previewGrid span,
+.previewGrid strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.toolbar strong {
+  color: var(--color-heading);
+}
+
+.toolbar span {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.toolbar button,
+.actions button,
+.forecastActions button,
+.historyPanel button,
+.scenarioActions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-accent-strong);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 12px;
+}
+
+.toolbar svg,
+.actions svg,
+.forecastActions svg,
+.muted svg {
+  width: 16px;
+  height: 16px;
+}
+
+.actions button:disabled,
+.forecastActions button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.forecastPanel {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+}
+
+.tabs {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  padding: 4px;
+}
+
+.tabs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  min-width: 132px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  padding: 0 12px;
+}
+
+.tabs svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tabs .activeTab {
+  background: var(--color-accent-strong);
+  color: #ffffff;
+}
+
+.forecastActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+}
+
+.forecastSummary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+
+.forecastSummary div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  padding: 10px;
+}
+
+.forecastSummary span,
+.forecastSummary strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.forecastSummary span {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.forecastSummary strong {
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.hyetograph {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(34px, 1fr));
+  align-items: end;
+  gap: 8px;
+  min-width: 0;
+  min-height: 178px;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--color-accent) 10%, transparent) 1px, transparent 1px),
+    var(--color-surface);
+  background-size: 100% 36px;
+  padding: 14px 12px 10px;
+}
+
+.rainBar {
+  display: grid;
+  grid-template-rows: 22px 124px 18px;
+  justify-items: center;
+  align-items: end;
+  gap: 5px;
+  min-width: 34px;
+}
+
+.rainBar span,
+.rainBar small {
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.rainBar i {
+  display: block;
+  width: min(100%, 24px);
+  min-height: 6px;
+  border-radius: 7px 7px 3px 3px;
+  background: linear-gradient(180deg, #38bdf8 0%, #2563eb 58%, #1e3a8a 100%);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 18px;
+  min-width: 0;
+}
+
+.mapSection {
+  min-width: 0;
+}
+
+.mapSection article {
+  min-height: 560px;
+}
+
+.panel,
+.historyPanel,
+.scenarioCard {
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+}
+
+.historyPanel {
+  display: grid;
+  gap: 14px;
+}
+
+.historyPanel > .panelHeader {
+  margin-bottom: 0;
+}
+
+.historyTable {
+  display: grid;
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.historyHeader,
+.historyRow {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.2fr) minmax(120px, 0.7fr) minmax(140px, 0.8fr) minmax(92px, 0.5fr) minmax(92px, 0.5fr) minmax(280px, 1.8fr);
+  gap: 10px;
+  align-items: center;
+  min-width: 980px;
+}
+
+.historyHeader {
+  background: var(--color-surface);
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 900;
+  padding: 10px 12px;
+}
+
+.historyRow {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  border-radius: 0;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: 11px 12px;
+}
+
+.historyRow:hover {
+  background: color-mix(in srgb, var(--color-accent) 9%, var(--color-panel));
+}
+
+.historyRow span,
+.historyRow strong,
+.historyRow small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.historyRow strong {
+  display: block;
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.historyRow small {
+  display: block;
+  color: var(--color-muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.completed,
+.completed_with_warnings,
+.failed,
+.cancelled,
+.running,
+.queued,
+.paused {
+  font-weight: 900;
+}
+
+.completed {
+  color: #10b981;
+}
+
+.completed_with_warnings,
+.paused,
+.queued {
+  color: #f59e0b;
+}
+
+.failed,
+.cancelled {
+  color: #ef4444;
+}
+
+.running {
+  color: #38bdf8;
+}
+
+.emptyHistory {
+  min-width: 980px;
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  padding: 14px 12px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 14px;
+}
+
+.panelHeader h2,
+.scenarioCard h2 {
+  margin: 0;
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+.panelHeader h2 {
+  font-size: 18px;
+}
+
+.panelHeader span,
+.scenarioCard > div > span {
+  color: var(--color-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.panel textarea {
+  width: 100%;
+  min-width: 0;
+  resize: vertical;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  line-height: 1.5;
+  padding: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.previewGrid,
+.latestJob,
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+
+.previewGrid div,
+.latestJob div,
+.metrics div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.previewGrid span,
+.latestJob span,
+.metrics span {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.previewGrid strong,
+.latestJob strong,
+.metrics strong {
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.reasonList {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--color-text);
+}
+
+.reasonList li {
+  overflow-wrap: anywhere;
+}
+
+.muted {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.latestJob + p {
+  color: var(--color-muted);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.scenarioGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  min-width: 0;
+}
+
+.scenarioCard {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.scenarioMedia {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-soft);
+}
+
+.scenarioMedia img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.scenarioMedia span {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  max-width: calc(100% - 16px);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-accent-strong);
+  font-size: 11px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+  padding: 4px 7px;
+}
+
+.scenarioCard p {
+  margin: 8px 0 0;
+  color: var(--color-muted);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.metrics {
+  grid-template-columns: 1fr 1fr;
+}
+
+.scenarioActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.scenarioActions a {
+  min-height: 36px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1280px) {
+  .scenarioGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .grid,
+  .scenarioGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .forecastSummary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .toolbar,
+  .previewGrid,
+  .latestJob,
+  .metrics,
+  .forecastSummary,
+  .scenarioActions {
+    grid-template-columns: 1fr;
+  }
+
+  .forecastActions {
+    justify-content: stretch;
+  }
+
+  .forecastActions button {
+    flex: 1 1 160px;
+  }
+}

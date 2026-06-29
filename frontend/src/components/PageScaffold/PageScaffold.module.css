@@ -1,0 +1,82 @@
+.page {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.header {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  max-width: 980px;
+}
+
+.header p {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--color-heading);
+  font-size: 30px;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.header span {
+  color: var(--color-muted);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.statusGrid article {
+  min-width: 0;
+  min-height: 104px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+  padding: 16px;
+}
+
+.statusGrid span,
+.statusGrid strong {
+  display: block;
+}
+
+.statusGrid span {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.statusGrid strong {
+  margin-top: 10px;
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 960px) {
+  .statusGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .statusGrid {
+    grid-template-columns: 1fr;
+  }
+}

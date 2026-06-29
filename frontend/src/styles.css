@@ -1,0 +1,98 @@
+:root {
+  --brand-aqua-100: #b1dee2;
+  --brand-aqua-300: #6bc3d2;
+  --brand-aqua-400: #64b8c1;
+  --brand-aqua-500: #5cadba;
+  --brand-aqua-600: #5298a9;
+  --brand-aqua-700: #49879a;
+  --brand-heading: #20545b;
+  --brand-navy: #25394f;
+  --brand-deep: #264351;
+  --brand-blue: #155a7c;
+  --brand-charcoal: #4f4f51;
+  --color-bg: #ffffff;
+  --color-bg-soft: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-strong: #f7fcfd;
+  --color-panel: rgba(255, 255, 255, 0.98);
+  --color-border: rgba(32, 84, 91, 0.18);
+  --color-text: #25394f;
+  --color-heading: #20545b;
+  --color-muted: #5f7380;
+  --color-accent: #5cadba;
+  --color-accent-strong: #20545b;
+  --color-danger: #b42318;
+  --color-warning: #b86e00;
+  --color-success: #0f7a4f;
+  --shadow-card: 0 14px 34px rgba(21, 90, 124, 0.1);
+  color: var(--color-text);
+  background: var(--color-bg);
+  color-scheme: light;
+  font-family:
+    Roboto,
+    Poppins,
+    "BDO Grotesk",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #07111f;
+  --color-bg-soft: #0f172a;
+  --color-surface: #111827;
+  --color-surface-strong: #0f2834;
+  --color-panel: rgba(15, 23, 42, 0.78);
+  --color-border: rgba(177, 222, 226, 0.2);
+  --color-text: #e5edf7;
+  --color-heading: #f8fafc;
+  --color-muted: #a5d0d1;
+  --color-accent: #6bc3d2;
+  --color-accent-strong: #b1dee2;
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
+  --color-success: #34d399;
+  --shadow-card: 0 16px 42px rgba(0, 0, 0, 0.28);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}

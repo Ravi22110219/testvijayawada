@@ -1,0 +1,531 @@
+.livePage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
+  min-width: 0;
+  height: calc(100vh - 128px);
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.mapPane {
+  min-width: 0;
+  min-height: 0;
+  border-right: 1px solid #dbe4ed;
+}
+
+.sidePane {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  background: #ffffff;
+  padding: 16px;
+}
+
+.sideHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+}
+
+.sideHeader p,
+.sideHeader h1,
+.sideHeader span {
+  margin: 0;
+}
+
+.sideHeader p {
+  color: var(--color-accent-strong);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.sideHeader h1 {
+  color: #334155;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.sideHeader span {
+  display: block;
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f1f5f9;
+  padding: 4px;
+}
+
+.tabs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 36px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 0 8px;
+}
+
+.tabs svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.tabs .tabActive {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.toolPanel {
+  min-width: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 12px;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  margin: 0 0 10px;
+  padding: 0 10px;
+}
+
+.backButton:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.forecastPanel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #f8fbff;
+  padding: 12px;
+}
+
+.forecastHeader {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.forecastHeader h2,
+.forecastHeader p {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.forecastHeader h2 {
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.forecastHeader p {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.forecastActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+}
+
+.forecastActions button,
+.navActions a,
+.navActions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  min-height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+  padding: 0 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.forecastActions button:first-child {
+  border-color: #7dd3fc;
+  background: #ecfeff;
+  color: #075985;
+}
+
+.forecastActions button:last-child,
+.navActions a:first-child {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.forecastActions button:disabled,
+.navActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.forecastActions svg,
+.navActions svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.forecastMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+}
+
+.forecastMetrics div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 9px;
+}
+
+.forecastMetrics span,
+.forecastMetrics strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.forecastMetrics span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.forecastMetrics strong {
+  color: #334155;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.hyetograph {
+  display: block;
+  min-width: 0;
+  min-height: 168px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  padding: 8px;
+}
+
+.rainChart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chartGrid {
+  stroke: #dbeafe;
+  stroke-width: 1;
+}
+
+.chartTick {
+  stroke: #cbd5e1;
+  stroke-width: 1;
+}
+
+.chartBar {
+  fill: url("#rainForecastGradient");
+}
+
+.chartYLabel,
+.chartXLabel,
+.chartUnitLabel,
+.chartPeakLabel {
+  font-family: inherit;
+  letter-spacing: 0;
+}
+
+.chartYLabel {
+  fill: #64748b;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.chartXLabel {
+  fill: #475569;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.chartUnitLabel {
+  fill: #64748b;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.chartPeakLabel {
+  fill: #1d4ed8;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.rainBar span {
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.emptyChart {
+  grid-column: 1 / -1;
+  align-self: center;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.navActions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+
+.statusBlock {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 4px 10px;
+  min-width: 0;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #334155;
+  padding: 9px;
+}
+
+.statusBlock div {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.statusBlock svg {
+  width: 17px;
+  height: 17px;
+}
+
+.statusBlock span,
+.statusBlock strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.statusBlock span {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.statusBlock strong {
+  color: #334155;
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.dataTable {
+  display: grid;
+  min-width: 0;
+  margin-top: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.hotspotHeader,
+.hotspotRow,
+.alertHeader,
+.alertRow {
+  display: grid;
+  align-items: center;
+  min-width: 0;
+}
+
+.hotspotHeader,
+.hotspotRow {
+  grid-template-columns: minmax(90px, 1.2fr) minmax(52px, 0.6fr) minmax(62px, 0.7fr);
+}
+
+.alertHeader,
+.alertRow {
+  grid-template-columns: minmax(48px, 0.55fr) minmax(62px, 0.7fr) minmax(70px, 0.75fr) minmax(74px, 0.8fr);
+}
+
+.hotspotHeader,
+.alertHeader {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.alertHeader {
+  background: #fef2f2;
+}
+
+.hotspotHeader strong,
+.hotspotRow span,
+.alertHeader strong,
+.alertRow span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 8px 8px;
+}
+
+.hotspotRow,
+.alertRow {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: left;
+}
+
+.hotspotRow:hover {
+  background: #eff6ff;
+}
+
+.alertRow:hover {
+  background: #fff7ed;
+}
+
+.hotspotRow span:first-child {
+  color: #2563eb;
+}
+
+.alertRow span:first-child {
+  color: #dc2626;
+}
+
+.emptyState {
+  margin: 10px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+@media (max-width: 1180px) {
+  .livePage {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+
+  .mapPane {
+    height: 62vh;
+    min-height: 480px;
+    border-right: 0;
+    border-bottom: 1px solid #dbe4ed;
+  }
+
+  .sidePane {
+    height: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .mapPane {
+    min-height: 520px;
+  }
+
+  .sidePane {
+    padding: 12px;
+  }
+
+  .sideHeader {
+    flex-direction: column;
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

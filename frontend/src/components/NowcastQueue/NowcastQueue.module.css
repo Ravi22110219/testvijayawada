@@ -1,0 +1,297 @@
+.panel {
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+}
+
+.panel h2 {
+  margin: 0;
+  color: var(--color-heading);
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.panelHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  min-width: 0;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+  margin: 6px 0 18px;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+}
+
+.checkRow span {
+  color: var(--color-muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.checkRow input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-accent);
+}
+
+.primaryButton,
+.controlButton,
+.stopButton,
+.iconButton {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface-strong);
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.primaryButton:hover,
+.controlButton:hover,
+.stopButton:hover,
+.iconButton:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.primaryButton,
+.controlButton,
+.stopButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 14px;
+  font-weight: 700;
+}
+
+.primaryButton:not(:disabled) {
+  border-color: var(--color-accent-strong);
+  background: var(--color-accent-strong);
+  color: #ffffff;
+}
+
+.controlRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+
+.controlButton,
+.stopButton {
+  min-height: 40px;
+}
+
+.controlButton:not(:disabled) {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 15%, var(--color-surface));
+}
+
+.stopButton:not(:disabled) {
+  border-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 12%, var(--color-surface));
+  color: var(--color-heading);
+}
+
+.primaryButton span,
+.controlButton span,
+.stopButton span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.primaryButton:disabled,
+.controlButton:disabled,
+.stopButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+}
+
+.primaryButton svg,
+.controlButton svg,
+.stopButton svg,
+.iconButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.progressPanel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  margin: 0 0 16px;
+  padding: 14px;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+}
+
+.progressHeader span {
+  color: var(--color-muted);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.progressHeader strong {
+  color: var(--color-heading);
+  text-align: right;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.progressTrack {
+  position: relative;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-surface-strong);
+}
+
+.progressTrack::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.58), transparent);
+  content: "";
+  animation: feedSweep 1.25s linear infinite;
+}
+
+.progressTrack i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--brand-aqua-500), var(--brand-blue));
+}
+
+.progressPercent {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface-strong);
+  padding: 10px;
+}
+
+.progressPercent strong,
+.progressPercent span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.progressPercent strong {
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.progressPercent span {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.progressPanel[data-state="failed"] .progressTrack i,
+.progressPanel[data-state="cancelled"] .progressTrack i {
+  background: linear-gradient(90deg, var(--color-warning), var(--color-danger));
+}
+
+.progressPanel[data-state="paused"] .progressTrack i {
+  background: linear-gradient(90deg, var(--color-warning), var(--color-accent-strong));
+}
+
+.progressFeed {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.progressFeed span {
+  min-width: 0;
+  border-left: 3px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  padding-left: 9px;
+}
+
+.progressFeed .feedActive {
+  border-left-color: var(--color-accent-strong);
+  color: var(--color-heading);
+  font-weight: 800;
+}
+
+.runSummary {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  border-top: 1px solid var(--color-border);
+  margin-top: 4px;
+  padding-top: 14px;
+}
+
+.runSummary span,
+.runSummary small {
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.runSummary strong {
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+.errorText {
+  color: var(--color-danger);
+}
+
+.muted {
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes feedSweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

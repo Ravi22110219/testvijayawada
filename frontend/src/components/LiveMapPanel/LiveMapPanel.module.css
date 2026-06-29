@@ -1,0 +1,531 @@
+.panel {
+  display: grid;
+  grid-template-rows: auto minmax(300px, 1fr) auto;
+  gap: 14px;
+  min-width: 0;
+  min-height: 430px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+}
+
+.landingPanel {
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 0;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.header h2 {
+  margin: 0 0 10px;
+  color: var(--color-heading);
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.header p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.openLink,
+.layerButton {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface-strong);
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.openLink:hover,
+.layerButton:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.openLink svg,
+.layerButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mapFrame {
+  position: relative;
+  min-width: 0;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #eef5f0;
+}
+
+.landingMapFrame {
+  min-height: 0;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.landingMapFrame .mapCanvas {
+  min-height: 0;
+}
+
+.mapCanvas {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.mapStatus,
+.depthBadge,
+.layerMenu,
+.mapTypeControls {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-text);
+  box-shadow: none;
+  overflow-wrap: anywhere;
+}
+
+.mapStatus {
+  left: 10px;
+  bottom: 10px;
+  max-width: calc(100% - 20px);
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.depthBadge {
+  top: 10px;
+  left: 10px;
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+}
+
+.depthBadge strong {
+  color: var(--color-heading);
+}
+
+.depthBadge span {
+  color: var(--color-accent-strong);
+  font-size: 12px;
+}
+
+.layerMenu {
+  top: 10px;
+  right: 10px;
+  display: grid;
+  gap: 9px;
+  width: min(330px, calc(100% - 20px));
+  max-height: min(72vh, 620px);
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.layerMenu strong {
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.layerGroup {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: 9px;
+}
+
+.layerGroupTitle {
+  color: var(--color-accent-strong);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.layerCheck {
+  display: grid;
+  grid-template-columns: 16px 12px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  color: var(--color-text);
+  font-size: 12px;
+}
+
+.layerCheck input {
+  margin-top: 2px;
+  accent-color: var(--color-accent);
+}
+
+.layerCheck span {
+  display: grid;
+  grid-column: 2 / 4;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.layerSwatch {
+  display: block;
+  grid-column: 2;
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  border-radius: 999px;
+  margin-top: 4px;
+}
+
+.layerSwatch + span {
+  grid-column: 3;
+}
+
+.layerCheck strong {
+  color: #334155;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.layerCheck small {
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.mapTypeControls {
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  width: min(300px, calc(100% - 20px));
+  padding: 6px;
+}
+
+.mapTypeControls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 34px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 0 8px;
+}
+
+.mapTypeControls button:hover,
+.mapTypeControls .mapTypeActive {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  color: var(--color-heading);
+}
+
+.mapTypeControls svg {
+  width: 15px;
+  height: 15px;
+}
+
+.sliderRow {
+  display: grid;
+  grid-template-columns: 42px minmax(78px, 0.35fr) minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.landingPanel .sliderRow {
+  position: relative;
+  z-index: 3;
+  min-height: 36px;
+  border-top: 1px solid #cbd5e1;
+  background: #f8fafc;
+  padding: 6px 12px;
+}
+
+.leftToolRail {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  z-index: 4;
+  display: grid;
+  gap: 8px;
+}
+
+.leftToolRail button,
+.leftToolRail a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #334155;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.leftToolRail .toolActive {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.leftToolRail svg {
+  width: 17px;
+  height: 17px;
+}
+
+.alertPulse,
+.hotspotPulse {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.alertPulse::before,
+.alertPulse::after,
+.hotspotPulse::before,
+.hotspotPulse::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  opacity: 0;
+  animation: markerWave 1.8s ease-out infinite;
+}
+
+.alertPulse::after,
+.hotspotPulse::after {
+  animation-delay: 0.65s;
+}
+
+.alertPulse {
+  color: #dc2626;
+}
+
+.hotspotPulse {
+  color: #2563eb;
+}
+
+@keyframes markerWave {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.7);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.9);
+  }
+}
+
+.dataOverlay {
+  position: absolute;
+  top: 58px;
+  left: 58px;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 170px));
+  gap: 8px;
+  width: min(360px, calc(100% - 82px));
+}
+
+.baseGallery {
+  position: absolute;
+  left: 58px;
+  bottom: 54px;
+  z-index: 3;
+  display: grid;
+  gap: 12px;
+  width: min(360px, calc(100% - 78px));
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: none;
+  padding: 12px;
+}
+
+.baseGallery > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.baseGallery strong {
+  color: #334155;
+  font-size: 13px;
+}
+
+.baseGallery > div:first-child button {
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.baseTiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.baseTiles button {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.baseTiles i {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.55;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+
+.baseActive i {
+  border-color: #2563eb;
+}
+
+.tileTerrain {
+  background:
+    linear-gradient(35deg, transparent 40%, rgba(22, 163, 74, 0.35) 40% 48%, transparent 48%),
+    linear-gradient(140deg, transparent 45%, rgba(234, 179, 8, 0.45) 45% 49%, transparent 49%),
+    #e8f5e9;
+}
+
+.tileVoyager {
+  background:
+    linear-gradient(35deg, transparent 36%, #f4c96d 36% 39%, transparent 39%),
+    linear-gradient(115deg, transparent 42%, #f4c96d 42% 45%, transparent 45%),
+    linear-gradient(90deg, transparent 52%, #b7d8ef 52% 58%, transparent 58%),
+    radial-gradient(circle at 62% 48%, #a7f3d0 0 12%, transparent 13%),
+    #f8faf7;
+}
+
+.tileSatellite {
+  background:
+    radial-gradient(circle at 30% 35%, #7f8f54 0 18%, transparent 19%),
+    radial-gradient(circle at 70% 55%, #2f4f46 0 24%, transparent 25%),
+    #1f2937;
+}
+
+.tileLight {
+  background:
+    linear-gradient(90deg, transparent 40%, #dbeafe 40% 45%, transparent 45%),
+    linear-gradient(20deg, transparent 35%, #fde68a 35% 40%, transparent 40%),
+    #f8fafc;
+}
+
+.playButton {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface-strong);
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.playButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.playButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.sliderRow span {
+  color: var(--color-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.sliderRow span:last-child {
+  text-align: right;
+}
+
+.sliderRow input {
+  width: 100%;
+  accent-color: var(--color-accent);
+}
+
+@media (max-width: 680px) {
+  .sliderRow {
+    grid-template-columns: 42px minmax(0, 1fr) 48px;
+  }
+
+  .sliderRow input {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 980px) {
+  .dataOverlay {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .baseGallery {
+    display: none;
+  }
+}

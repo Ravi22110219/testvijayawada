@@ -1,0 +1,155 @@
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.toolbar div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.toolbar strong,
+.toolbar span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.toolbar strong {
+  color: var(--color-heading);
+}
+
+.toolbar span {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.toolbar button,
+.historyRow a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-accent-strong);
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 0 12px;
+  text-decoration: none;
+}
+
+.toolbar svg,
+.historyRow svg {
+  width: 16px;
+  height: 16px;
+}
+
+.historyPanel {
+  display: grid;
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+}
+
+.tableHeader,
+.historyRow {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.2fr) minmax(120px, 0.7fr) minmax(170px, 1fr) minmax(90px, 0.5fr) minmax(95px, 0.55fr) minmax(130px, 0.65fr);
+  gap: 12px;
+  align-items: center;
+  min-width: 920px;
+}
+
+.tableHeader {
+  background: var(--color-surface);
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 900;
+  padding: 11px 14px;
+}
+
+.historyRow {
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 12px 14px;
+}
+
+.historyRow:hover {
+  background: color-mix(in srgb, var(--color-accent) 7%, var(--color-panel));
+}
+
+.historyRow div,
+.historyRow span,
+.historyRow strong,
+.historyRow small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.historyRow strong {
+  display: block;
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.historyRow small {
+  display: block;
+  color: var(--color-muted);
+  font-size: 11px;
+  line-height: 1.35;
+  margin-top: 3px;
+}
+
+.success,
+.warning,
+.danger,
+.running,
+.pending {
+  font-weight: 900;
+}
+
+.success {
+  color: #10b981;
+}
+
+.warning,
+.pending {
+  color: #f59e0b;
+}
+
+.danger {
+  color: #ef4444;
+}
+
+.running {
+  color: #38bdf8;
+}
+
+.emptyState {
+  min-width: 920px;
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  padding: 16px 14px;
+}
+
+@media (max-width: 720px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar button {
+    width: fit-content;
+  }
+}

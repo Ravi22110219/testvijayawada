@@ -1,0 +1,468 @@
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto auto auto;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+
+.toolbar div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.toolbar strong,
+.toolbar span,
+.toolbar label {
+  overflow-wrap: anywhere;
+}
+
+.toolbar strong {
+  color: var(--color-heading);
+}
+
+.toolbar span,
+.toolbar label {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.toolbar label {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.toolbar button,
+.actionRow button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-accent-strong);
+  color: #ffffff;
+  font-weight: 800;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.toolbar svg,
+.actionRow svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.mapAndMessage,
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.8fr);
+  gap: 18px;
+  min-width: 0;
+}
+
+.panel,
+.mapPanel,
+.messagePanel,
+.officialPanel {
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+  border-radius: 8px;
+  background: var(--color-surface-strong);
+  padding: 20px;
+}
+
+.officialPanel {
+  display: grid;
+  gap: 12px;
+}
+
+.officialGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+
+.officialCard {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  padding: 12px;
+}
+
+.officialCard strong,
+.officialCard span,
+.officialCard small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.officialCard strong {
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.officialCard span {
+  color: var(--color-accent-strong);
+  font-size: 12px;
+}
+
+.officialCard small {
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 14px;
+}
+
+.panelHeader h2 {
+  margin: 0;
+  color: var(--color-heading);
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.panelHeader span {
+  color: var(--color-accent-strong);
+  font-size: 12px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.apCanvas {
+  min-height: 320px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  padding: 18px;
+}
+
+.apOutline {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 36%, transparent);
+  border-radius: 42% 38% 44% 36%;
+  background:
+    radial-gradient(circle at 48% 55%, rgba(220, 38, 38, 0.16), transparent 22%),
+    radial-gradient(circle at 42% 48%, rgba(249, 115, 22, 0.14), transparent 20%),
+    radial-gradient(circle at 56% 42%, rgba(250, 204, 21, 0.12), transparent 18%),
+    linear-gradient(135deg, color-mix(in srgb, var(--color-success) 16%, var(--color-surface)), color-mix(in srgb, var(--color-accent) 24%, var(--color-surface))),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.54) 0 2px, transparent 2px 12px);
+}
+
+.apOutline > span,
+.apOutline > strong {
+  position: absolute;
+  left: 18px;
+  z-index: 2;
+  overflow-wrap: anywhere;
+}
+
+.apOutline > span {
+  top: 16px;
+  color: var(--color-accent-strong);
+}
+
+.apOutline > strong {
+  top: 40px;
+  color: var(--color-heading);
+}
+
+.ulbMarker {
+  position: absolute;
+  left: 48%;
+  top: 52%;
+  z-index: 4;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--color-heading);
+  border-radius: 50%;
+  color: var(--color-surface);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.heatCell {
+  position: absolute;
+  z-index: 3;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  opacity: 0.68;
+  filter: blur(5px);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply;
+}
+
+.heatCell::after {
+  content: "";
+  position: absolute;
+  inset: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.heatLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.heatLegend span {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.messagePanel {
+  display: grid;
+  gap: 12px;
+}
+
+.messagePanel > strong {
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+.messagePanel pre {
+  min-height: 270px;
+  overflow: auto;
+  white-space: pre-wrap;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+  line-height: 1.45;
+  margin: 0;
+  padding: 12px;
+}
+
+.messagePanel input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+  padding: 10px 12px;
+}
+
+.actionRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.downloadLink {
+  color: var(--color-accent-strong);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.ulbTable,
+.wardTable {
+  display: grid;
+  min-width: 0;
+}
+
+.ulbHeader,
+.ulbRow {
+  display: grid;
+  grid-template-columns: minmax(170px, 1fr) repeat(4, minmax(74px, 0.5fr));
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+  padding: 10px 0;
+}
+
+.wardHeader,
+.wardRow {
+  display: grid;
+  grid-template-columns: 44px minmax(62px, 0.45fr) repeat(4, minmax(72px, 0.55fr));
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+  padding: 10px 0;
+}
+
+.ulbHeader,
+.wardHeader {
+  color: var(--color-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.wardRow {
+  width: 100%;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ulbHeader span,
+.ulbRow span,
+.ulbRow strong,
+.ulbRow small,
+.wardHeader span,
+.wardRow span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ulbRow strong,
+.ulbRow small {
+  display: block;
+}
+
+.ulbRow strong {
+  color: var(--color-heading);
+}
+
+.ulbRow small {
+  margin-top: 3px;
+  color: var(--color-muted);
+}
+
+.auditList {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.auditList li {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.auditList strong,
+.auditList span,
+.auditList small {
+  overflow-wrap: anywhere;
+}
+
+.auditList strong {
+  color: var(--color-heading);
+}
+
+.auditList span {
+  color: var(--color-muted);
+}
+
+.auditList small {
+  color: var(--color-muted);
+}
+
+.alertText {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background-color: transparent;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.green {
+  color: var(--color-success);
+}
+
+.yellow {
+  color: var(--color-warning);
+}
+
+.orange {
+  color: var(--color-warning);
+}
+
+.red {
+  color: var(--color-danger);
+}
+
+.heatCell.green,
+.heatLegend .green,
+.ulbMarker.green {
+  color: #ffffff;
+  background-color: color-mix(in srgb, var(--color-success) 70%, transparent);
+}
+
+.heatCell.yellow,
+.heatLegend .yellow,
+.ulbMarker.yellow {
+  color: #ffffff;
+  background-color: color-mix(in srgb, var(--color-warning) 70%, transparent);
+}
+
+.heatCell.orange,
+.heatLegend .orange,
+.ulbMarker.orange {
+  color: #ffffff;
+  background-color: color-mix(in srgb, var(--color-warning) 78%, transparent);
+}
+
+.heatCell.red,
+.heatLegend .red,
+.ulbMarker.red {
+  color: #ffffff;
+  background-color: color-mix(in srgb, var(--color-danger) 76%, transparent);
+}
+
+@media (max-width: 1080px) {
+  .mapAndMessage,
+  .grid,
+  .toolbar,
+  .officialGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .ulbHeader,
+  .wardHeader {
+    display: none;
+  }
+
+  .ulbRow,
+  .wardRow,
+  .actionRow {
+    grid-template-columns: 1fr;
+  }
+}

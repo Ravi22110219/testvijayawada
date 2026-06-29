@@ -1,0 +1,19 @@
+.selectField {
+  display: grid;
+  gap: 6px;
+}
+
+.selectField span {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.selectField select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-heading);
+  padding: 0 10px;
+}

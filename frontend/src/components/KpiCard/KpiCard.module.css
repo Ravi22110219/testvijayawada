@@ -1,0 +1,69 @@
+.kpi {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  min-height: 138px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+  overflow: hidden;
+}
+
+.kpi span,
+.kpi small {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.kpi span {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.kpi strong {
+  display: block;
+  margin: 12px 0 8px;
+  font-size: 30px;
+  line-height: 1.08;
+  min-width: 0;
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+.kpi small {
+  color: var(--color-muted);
+  line-height: 1.35;
+}
+
+.linked {
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.linked:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface-strong);
+  transform: translateY(-2px);
+}
+
+.red strong {
+  color: var(--color-danger);
+}
+
+.orange strong {
+  color: var(--color-warning);
+}
+
+.yellow strong,
+.amber strong {
+  color: var(--color-warning);
+}
+
+.green strong {
+  color: var(--color-success);
+}

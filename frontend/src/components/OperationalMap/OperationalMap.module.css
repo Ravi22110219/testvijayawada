@@ -1,0 +1,399 @@
+.shell {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.28fr) minmax(420px, 1fr) minmax(260px, 0.32fr);
+  gap: 16px;
+  min-width: 0;
+}
+
+.layerPanel,
+.inspectPanel {
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-panel);
+  box-shadow: var(--shadow-card);
+  padding: 16px;
+}
+
+.layerPanel {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  max-height: 680px;
+  overflow: auto;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.panelHeader strong,
+.panelHeader span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.panelHeader strong {
+  color: var(--color-heading);
+}
+
+.panelHeader span {
+  color: var(--color-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.toggleRow {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+  min-width: 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.layerRow {
+  display: grid;
+  grid-template-columns: 16px 14px minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+  min-width: 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.toggleRow input,
+.layerRow input {
+  margin: 2px 0 0;
+  accent-color: var(--color-accent);
+}
+
+.layerGroup {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+}
+
+.layerGroup h2 {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.layerRow strong,
+.layerRow small {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.layerRow strong {
+  color: var(--color-heading);
+}
+
+.layerRow small {
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+.layerSwatch {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 75%, #000000);
+  border-radius: 3px;
+  margin-top: 3px;
+}
+
+.mapStage {
+  position: relative;
+  min-width: 0;
+  min-height: 680px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #eef5f0;
+  box-shadow: var(--shadow-card);
+}
+
+.mapCanvas {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 680px;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.mapStatus,
+.overlayBadge,
+.hoverInspect,
+.animationControls,
+.mapTypeControls {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-text);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-surface) 90%, transparent);
+  overflow-wrap: anywhere;
+}
+
+.mapStatus {
+  left: 12px;
+  bottom: 12px;
+  max-width: min(460px, calc(100% - 24px));
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.overlayBadge {
+  left: 12px;
+  top: 12px;
+  max-width: min(460px, calc(100% - 24px));
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+}
+
+.overlayBadge strong,
+.overlayBadge span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.overlayBadge span {
+  color: var(--color-accent-strong);
+  font-size: 12px;
+}
+
+.hoverInspect {
+  z-index: 3;
+  display: grid;
+  gap: 2px;
+  max-width: min(220px, calc(100% - 24px));
+  pointer-events: none;
+  transform: translate(14px, 14px);
+  padding: 9px 10px;
+}
+
+.hoverInspect strong,
+.hoverInspect span,
+.hoverInspect small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hoverInspect strong {
+  color: var(--color-heading);
+  font-size: 14px;
+}
+
+.hoverInspect span {
+  color: var(--color-accent-strong);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.hoverInspect small {
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.animationControls {
+  left: 50%;
+  bottom: 54px;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 38px minmax(86px, 0.45fr) minmax(160px, 1fr) 54px;
+  align-items: center;
+  gap: 10px;
+  width: min(680px, calc(100% - 24px));
+  padding: 10px;
+}
+
+.animationControls button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface-strong);
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.animationControls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.animationControls button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.animationControls span,
+.animationControls strong {
+  min-width: 0;
+  color: var(--color-text);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.animationControls strong {
+  color: var(--color-accent-strong);
+  text-align: right;
+}
+
+.animationControls input {
+  width: 100%;
+  min-width: 0;
+  accent-color: var(--color-accent);
+}
+
+.mapTypeControls {
+  top: 12px;
+  right: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  width: min(220px, calc(100% - 24px));
+  padding: 6px;
+}
+
+.mapTypeControls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 36px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 0 8px;
+}
+
+.mapTypeControls button:hover,
+.mapTypeControls .mapTypeActive {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  color: var(--color-heading);
+}
+
+.mapTypeControls svg {
+  width: 15px;
+  height: 15px;
+}
+
+.featureDetails {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.featureDetails h2 {
+  margin: 0;
+  color: var(--color-heading);
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.featureDetails p {
+  margin: 0;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.featureDetails dl {
+  display: grid;
+  grid-template-columns: minmax(88px, 0.42fr) minmax(0, 1fr);
+  gap: 8px 10px;
+  margin: 0;
+}
+
+.featureDetails dt,
+.featureDetails dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+
+.featureDetails dt {
+  color: var(--color-muted);
+}
+
+.featureDetails dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.emptyInspect {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  min-width: 0;
+}
+
+.emptyInspect strong,
+.emptyInspect span {
+  overflow-wrap: anywhere;
+}
+
+.emptyInspect strong {
+  color: var(--color-heading);
+}
+
+.emptyInspect span {
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 1180px) {
+  .shell {
+    grid-template-columns: minmax(240px, 0.34fr) minmax(0, 1fr);
+  }
+
+  .inspectPanel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .mapStage,
+  .mapCanvas {
+    min-height: 520px;
+  }
+
+  .animationControls {
+    grid-template-columns: 38px minmax(0, 1fr) 54px;
+    bottom: 54px;
+  }
+
+  .animationControls span {
+    grid-column: 1 / -1;
+  }
+
+  .featureDetails dl {
+    grid-template-columns: 1fr;
+  }
+}
