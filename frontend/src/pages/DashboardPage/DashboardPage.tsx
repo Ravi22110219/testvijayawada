@@ -7,10 +7,9 @@ import {
   fetchDashboardSummary,
   fetchImpactHotspots,
   fetchImpactSummary,
-  fetchMisHotspots,
   googleMapsConfigured
 } from "../../services/api";
-import type { DashboardCard, DashboardSummary, HealthState, HotspotImpact, MisHotspotRecord, OperationalImpactSummary, WardImpact } from "../../types/api";
+import type { DashboardCard, DashboardSummary, HealthState, HotspotImpact, OperationalImpactSummary, WardImpact } from "../../types/api";
 import styles from "./DashboardPage.module.css";
 
 export function DashboardPage() {
@@ -58,15 +57,10 @@ export function DashboardPage() {
   React.useEffect(() => {
     Promise.all([
       fetchImpactHotspots(12),
-      fetchImpactSummary(),
-      fetchMisHotspots()
+      fetchImpactSummary()
     ])
-      .then(([hotspotPayload, impactPayload, misPayload]) => {
-        const impactHotspots = (hotspotPayload.hotspots || []).filter((hotspot) => hotspot.incident_candidate);
-        const fallbackHotspots = (misPayload.hotspots || [])
-          .filter((hotspot) => hotspot.impact_status !== "resolved")
-          .map(misHotspotToImpactHotspot);
-        setHotspots((impactHotspots.length ? impactHotspots : fallbackHotspots).slice(0, 8));
+      .then(([hotspotPayload, impactPayload]) => {
+        setHotspots((hotspotPayload.hotspots || []).filter((hotspot) => hotspot.incident_candidate).slice(0, 8));
         setImpactSummary(impactPayload);
       })
       .catch(() => {
@@ -81,11 +75,6 @@ export function DashboardPage() {
   const latestRun = findCard(cards, "latest_model_run");
   const rainfallCard = findCard(cards, "city_max_rainfall");
   const apsdmaWarning = findCard(cards, "apsdma_warning_level");
-  const alertWards = (impactSummary?.top_wards || []).length
-    ? (impactSummary?.top_wards || []).slice(0, 10)
-    : hotspotsToWardAlerts(hotspots).slice(0, 10);
-  const activeHotspotValue = hotspots.length ? String(hotspots.length) : activeHotspots?.value || "--";
-  const wardsUnderAlertValue = alertWards.length ? String(alertWards.length) : wardsUnderAlert?.value || "--";
 
   return (
     <main className={styles.landing}>
@@ -98,7 +87,7 @@ export function DashboardPage() {
           showAws={false}
           showHotspots={false}
           hotspotMarkers={activeLayerTab === "hotspot" ? hotspots : []}
-          alertMarkers={activeLayerTab === "alert" ? alertWards : []}
+          alertMarkers={activeLayerTab === "alert" ? (impactSummary?.top_wards || []).slice(0, 10) : []}
         />
       </section>
 
@@ -129,8 +118,8 @@ export function DashboardPage() {
             </div>
           </div>
           <div className={styles.hotspotGrid}>
-            <StatusBlock icon={<MapPin aria-hidden="true" />} label="Active Hotspots" value={activeHotspotValue} hint={activeHotspots?.hint} />
-            <StatusBlock icon={<ShieldAlert aria-hidden="true" />} label="Wards Under Alert" value={wardsUnderAlertValue} hint={wardsUnderAlert?.hint} />
+            <StatusBlock icon={<MapPin aria-hidden="true" />} label="Active Hotspots" value={activeHotspots?.value || "--"} hint={activeHotspots?.hint} />
+            <StatusBlock icon={<ShieldAlert aria-hidden="true" />} label="Wards Under Alert" value={wardsUnderAlert?.value || "--"} hint={wardsUnderAlert?.hint} />
           </div>
           <HotspotTable
             hotspots={hotspots}
@@ -160,7 +149,7 @@ export function DashboardPage() {
               </div>
             </div>
             <AlertTable
-              wards={alertWards}
+              wards={(impactSummary?.top_wards || []).slice(0, 10)}
               onSelect={(ward) =>
                 mapRef.current?.zoomToWard({
                   wardId: ward.ward_id,
@@ -179,8 +168,8 @@ export function DashboardPage() {
           </div>
           {[
             ["Vijayawada", rainfallCard?.value || "--", dashboardSummary?.rainfall_alert_level || "--"],
-            ["Hotspots", activeHotspotValue, activeHotspots?.tone || "--"],
-            ["Wards", wardsUnderAlertValue, wardsUnderAlert?.tone || "--"],
+            ["Hotspots", activeHotspots?.value || "--", activeHotspots?.tone || "--"],
+            ["Wards", wardsUnderAlert?.value || "--", wardsUnderAlert?.tone || "--"],
             ["APSDMA", apsdmaWarning?.value || "--", apsdmaWarning?.tone || "--"],
             ["Latest Run", latestRun?.value || "--", dashboardSummary?.latest_model_run.status || "--"]
           ].map(([name, value, status], index) => (
@@ -250,70 +239,6 @@ function AlertTable(props: { wards: WardImpact[]; onSelect: (ward: WardImpact) =
 function estimatedAffectedPopulation(ward: WardImpact) {
   const urbanDensityPerKm2 = 12000;
   return Math.round(Math.max(0, ward.wet_area_km2 || 0) * urbanDensityPerKm2);
-}
-
-function misHotspotToImpactHotspot(hotspot: MisHotspotRecord): HotspotImpact {
-  const depth = hotspot.predicted_depth_m ?? null;
-  return {
-    hotspot_id: hotspot.hotspot_id,
-    latitude: hotspot.latitude,
-    longitude: hotspot.longitude,
-    ward_id: hotspot.ward_id,
-    model_depth_m: depth,
-    model_persistence_minutes: hotspot.wet_duration_minutes,
-    area_ha: hotspot.hotspot_area_ha,
-    estimated_impacted_area_ha: hotspot.hotspot_area_ha || 0,
-    source_run: hotspot.source_run_id,
-    alert_level: hotspotStatusToAlertLevel(hotspot.impact_status, depth),
-    incident_candidate: hotspot.impact_status === "critical" || (depth ?? 0) >= 0.15,
-    alert_reasons: [
-      hotspot.location_name,
-      hotspot.ward_name || hotspot.ward_id ? `Ward ${hotspot.ward_name || hotspot.ward_id}` : "",
-      hotspot.action_status ? `Action ${hotspot.action_status.replace(/_/g, " ")}` : ""
-    ].filter(Boolean)
-  };
-}
-
-function hotspotsToWardAlerts(hotspots: HotspotImpact[]): WardImpact[] {
-  const wards = new Map<string, WardImpact>();
-  hotspots.forEach((hotspot) => {
-    if (!hotspot.ward_id) {
-      return;
-    }
-    const existing = wards.get(hotspot.ward_id);
-    const depth = hotspot.model_depth_m || 0;
-    const wetAreaKm2 = (hotspot.estimated_impacted_area_ha || hotspot.area_ha || 0) / 100;
-    if (!existing) {
-      wards.set(hotspot.ward_id, {
-        ward_id: hotspot.ward_id,
-        wet_area_km2: wetAreaKm2,
-        max_depth_m: depth,
-        road_segments_wet: 0,
-        road_segments_high: 0,
-        flooded_road_length_km: 0,
-        alert_level: hotspot.alert_level,
-        alert_reasons: hotspot.alert_reasons
-      });
-      return;
-    }
-    existing.wet_area_km2 += wetAreaKm2;
-    existing.max_depth_m = Math.max(existing.max_depth_m, depth);
-    existing.alert_level = maxAlertLevel(existing.alert_level, hotspot.alert_level);
-    existing.alert_reasons = Array.from(new Set([...existing.alert_reasons, ...hotspot.alert_reasons]));
-  });
-  return Array.from(wards.values()).sort((left, right) => right.max_depth_m - left.max_depth_m);
-}
-
-function hotspotStatusToAlertLevel(status: MisHotspotRecord["impact_status"], depth?: number | null): WardImpact["alert_level"] {
-  if (status === "critical" || (depth ?? 0) >= 0.3) return "red";
-  if (status === "watch" || (depth ?? 0) >= 0.15) return "orange";
-  if ((depth ?? 0) > 0) return "yellow";
-  return "green";
-}
-
-function maxAlertLevel(left: WardImpact["alert_level"], right: WardImpact["alert_level"]) {
-  const order: Record<WardImpact["alert_level"], number> = { green: 0, yellow: 1, orange: 2, red: 3 };
-  return order[right] > order[left] ? right : left;
 }
 
 function StatusBlock(props: { icon: React.ReactNode; label: string; value: string; hint?: string }) {
