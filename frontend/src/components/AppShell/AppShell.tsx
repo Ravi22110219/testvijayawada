@@ -58,7 +58,7 @@ export function AppShell(props: {
   currentPath: string;
   user: CurrentUser;
   onNavigate: (path: string) => void;
-  onLogout: () => void;
+  onLogout?: () => void;
 }) {
   const [theme, setTheme] = useState<ThemeMode>(() => {
     return window.localStorage.getItem(themeStorageKey) === "dark" ? "dark" : "light";
@@ -160,9 +160,11 @@ export function AppShell(props: {
             <strong>{props.user.display_name}</strong>
             <span>{props.user.roles.join(", ")}</span>
           </div>
-          <button type="button" onClick={props.onLogout} aria-label="Log out">
-            <LogOut aria-hidden="true" />
-          </button>
+          {props.onLogout ? (
+            <button type="button" onClick={props.onLogout} aria-label="Log out">
+              <LogOut aria-hidden="true" />
+            </button>
+          ) : null}
         </div>
       </aside>
 
